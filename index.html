@@ -415,7 +415,133 @@
                 height: 60px;
                 margin-bottom: 1rem;
             }
+
+            /* Nav hamburger */
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 0;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255,255,255,0.95);
+                backdrop-filter: blur(12px);
+                border-top: 1px solid rgba(139,92,246,0.1);
+                padding: 1rem 1.5rem 1.5rem;
+                box-shadow: 0 8px 24px rgba(139,92,246,0.1);
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .nav-links a {
+                padding: 0.6rem 0;
+                border-bottom: 1px solid rgba(139,92,246,0.08);
+                font-size: 0.95rem;
+            }
+            .nav-links a:last-child {
+                border-bottom: none;
+                margin-top: 0.5rem;
+            }
+            .nav-links .contact-btn {
+                display: inline-flex;
+                width: fit-content;
+            }
+            .hamburger {
+                display: flex !important;
+            }
+
+            /* Hero text */
+            .hero-name {
+                font-size: 2.8rem !important;
+                line-height: 1.1 !important;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem !important;
+            }
+            .hero-desc {
+                font-size: 1rem !important;
+            }
+
+            /* Education card badge wrap */
+            .edu-card-header {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 0.75rem !important;
+            }
+
+            /* Contact section */
+            .contact-section {
+                padding: 2rem 1.25rem !important;
+            }
+            .contact-heading {
+                font-size: 1.75rem !important;
+            }
+            .contact-btn {
+                padding: 0.75rem 1.3rem;
+                font-size: 0.875rem;
+            }
+
+            /* General padding reductions */
+            .glass-effect.card-hover,
+            .glass-effect-dark {
+                padding: 1.5rem !important;
+            }
+
+            /* Stats grid */
+            .stats-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            /* Section mb reductions */
+            section {
+                margin-bottom: 3rem !important;
+            }
+
+            /* Orb size reduction for mobile */
+            .orb-1 { width: 200px; height: 200px; }
+            .orb-2 { width: 180px; height: 180px; }
+            .orb-3 { width: 150px; height: 150px; }
         }
+
+        @media (max-width: 480px) {
+            .hero-name {
+                font-size: 2.2rem !important;
+            }
+            .hero-subtitle {
+                font-size: 1.1rem !important;
+            }
+        }
+
+        /* Always hide hamburger on desktop */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.25rem;
+            flex-direction: column;
+            gap: 5px;
+            align-items: center;
+            justify-content: center;
+        }
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Nav wrapper needs relative for dropdown */
+        nav { position: relative; }
 
         @media print {
             body {
@@ -442,7 +568,12 @@
     <nav class="glass-effect-dark no-print">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="font-bold text-lg bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent">AV</div>
-            <div class="flex gap-6 items-center">
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links flex gap-6 items-center" id="nav-links">
                 <a href="#projects" class="text-sm font-medium text-var(--text-light) hover:text-var(--accent) transition">Projects</a>
                 <a href="#skills" class="text-sm font-medium text-var(--text-light) hover:text-var(--accent) transition">Skills</a>
                 <a href="#education" class="text-sm font-medium text-var(--text-light) hover:text-var(--accent) transition">Education</a>
@@ -452,19 +583,19 @@
     </nav>
 
     <!-- Main Container -->
-    <div class="max-w-6xl mx-auto px-6 py-16">
+    <div class="max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-16">
         <!-- Header Section -->
         <header class="header-section fade-in-up fade-in-up-1 mb-20">
             <div class="header-decoration"></div>
             <div class="header-content">
                 <div class="accent-bar"></div>
-                <h1 class="text-6xl md:text-7xl font-bold text-var(--primary) mb-4 leading-tight">
+                <h1 class="hero-name text-6xl md:text-7xl font-bold text-var(--primary) mb-4 leading-tight">
                     Apoorv<br>Verma
                 </h1>
-                <p class="text-2xl md:text-3xl font-light text-var(--accent) mb-6">
+                <p class="hero-subtitle text-2xl md:text-3xl font-light text-var(--accent) mb-6">
                     Full Stack Developer & Problem Solver
                 </p>
-                <p class="text-lg text-var(--text-light) max-w-4xl leading-relaxed mb-10">
+                <p class="hero-desc text-lg text-var(--text-light) max-w-4xl leading-relaxed mb-10">
                     Ambitious and results-oriented developer passionate about building efficient and scalable solutions. Strong analytical skills combined with expertise in modern web technologies. Currently pursuing B.Tech in Computer Science at VIT, Vellore.
                 </p>
                 <div class="flex flex-wrap gap-4 items-center">
@@ -491,7 +622,7 @@
         </header>
 
         <!-- Quick Stats -->
-        <section class="fade-in-up fade-in-up-2 mb-20 grid md:grid-cols-3 gap-6">
+        <section class="fade-in-up fade-in-up-2 mb-20 stats-grid grid md:grid-cols-3 gap-6">
             <div class="stat-card">
                 <div class="stat-number">4+</div>
                 <p class="text-var(--text-light) font-medium mt-2">Major Projects</p>
@@ -525,7 +656,7 @@
             <div class="space-y-6">
                 <!-- B.Tech -->
                 <div class="glass-effect card-hover p-8 rounded-16px">
-                    <div class="flex justify-between items-start mb-2">
+                    <div class="edu-card-header flex flex-wrap justify-between items-start gap-3 mb-2">
                         <div>
                             <h3 class="text-2xl font-bold text-var(--primary)">Bachelor of Technology</h3>
                             <p class="text-var(--accent) font-semibold">Computer Science & Engineering</p>
@@ -879,9 +1010,9 @@
         </section>
 
         <!-- Contact Section -->
-        <section class="fade-in-up fade-in-up-6 mb-20 glass-effect-dark p-12 rounded-20px text-center border border-purple-100">
-            <h2 class="text-4xl font-bold text-var(--primary) mb-4">Let's Build Something Great</h2>
-            <p class="text-var(--text-light) mb-10 max-w-2xl mx-auto text-lg">
+        <section class="fade-in-up fade-in-up-6 mb-20 glass-effect-dark contact-section p-6 md:p-12 rounded-20px text-center border border-purple-100">
+            <h2 class="contact-heading text-3xl md:text-4xl font-bold text-var(--primary) mb-4">Let's Build Something Great</h2>
+            <p class="text-var(--text-light) mb-8 md:mb-10 max-w-2xl mx-auto text-base md:text-lg">
                 Always eager to discuss innovative projects, solve complex problems, and explore opportunities to make a meaningful impact through technology.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
@@ -914,6 +1045,21 @@
     </div>
 
     <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            navLinks.classList.toggle('open');
+        });
+        // Close nav when a link is clicked on mobile
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                navLinks.classList.remove('open');
+            });
+        });
+
         // Smooth scroll behavior
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
