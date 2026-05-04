@@ -400,6 +400,13 @@
             }
         }
 
+        /* Nav links default (desktop) */
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .section-title {
@@ -418,7 +425,7 @@
 
             /* Nav hamburger */
             .nav-links {
-                display: none;
+                display: none !important;
                 flex-direction: column;
                 gap: 0;
                 position: absolute;
@@ -432,7 +439,7 @@
                 box-shadow: 0 8px 24px rgba(139,92,246,0.1);
             }
             .nav-links.open {
-                display: flex;
+                display: flex !important;
             }
             .nav-links a {
                 padding: 0.6rem 0;
@@ -573,7 +580,7 @@
                 <span></span>
                 <span></span>
             </button>
-            <div class="nav-links flex gap-6 items-center" id="nav-links">
+            <div class="nav-links" id="nav-links">
                 <a href="#projects" class="text-sm font-medium text-var(--text-light) hover:text-var(--accent) transition">Projects</a>
                 <a href="#skills" class="text-sm font-medium text-var(--text-light) hover:text-var(--accent) transition">Skills</a>
                 <a href="#education" class="text-sm font-medium text-var(--text-light) hover:text-var(--accent) transition">Education</a>
